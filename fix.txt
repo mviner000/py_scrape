@@ -1,0 +1,32 @@
+import React, { useState, useEffect } from 'react';
+
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  // Load the count from localStorage on component mount
+  useEffect(() => {
+    const storedCount = localStorage.getItem('count');
+    if (storedCount) {
+      setCount(parseInt(storedCount));
+    }
+  }, []); // Empty dependency array means this effect runs once after the first render
+
+  // Update count and store it in localStorage
+  const incrementCount = () => {
+    const newCount = count + 1;
+    setCount(newCount);
+    localStorage.setItem('count', newCount.toString());
+  };
+
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={incrementCount}>Increment</button>
+      <button onClick={() => { localStorage.removeItem('count'); setCount(0); }}>
+        Reset
+      </button>
+    </div>
+  );
+};
+
+export default App;
