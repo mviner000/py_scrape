@@ -1,0 +1,4 @@
+book_images/*
+book_images/*.jpg
+book_images/*.png
+book_images/*.gif
